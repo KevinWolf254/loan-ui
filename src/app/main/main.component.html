@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Maendeleo Community Bank</a>
+
+  <button (click)="toggleCollapse()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNav"
+    aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [class.show]="show" id="topNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link"> <i class="fa fa-cogs pr-2"></i> Settings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"> <i class="fa fa-user pr-2"></i> Profile
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- SideNav -->
+    <div class="col-lg-3">
+      <nav class="col-md-3 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+                <i class="fa fa-bar-chart fa-lg pr-2"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/member" routerLinkActive="active" class="nav-link">
+                <i class="fa fa-cart-plus fa-lg pr-2"></i>
+                Member Registration
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/loan" routerLinkActive="active" class="nav-link">
+                <i class="fa fa-map-marker fa-lg pr-2"></i>
+                Loan Application
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/reports" routerLinkActive="active" class="nav-link">
+                <i class="fa fa-user-circle-o fa-lg pr-2"></i>
+                Reports
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!-- Content Body -->
+    <div class="col-md-9 ml-sm-auto mt-5 px-3 pt-3">
+      <nav class="navbar navbar-expand-sm m-0 p-0 navbar-light bg-light d-lg-none 
+        d-xl-none d-md-none shadow-sm p-2 mb-2 bg-white rounded">
+        <button (click)="toggleCollapse2()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sideNav"
+          aria-controls="sideNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" [class.show]="show2" id="sideNav">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">
+              <i class="fa fa-bar-chart fa-lg pr-1"></i>
+              Dashboard
+            </a>
+            <a class="nav-item nav-link" routerLink="/member" routerLinkActive="active">
+              <i class="fa fa-cart-plus fa-lg pr-1"></i>
+              Member Registration
+            </a>
+            <a class="nav-item nav-link" routerLink="/loan" routerLinkActive="active">
+              <i class="fa fa-map-marker fa-lg pr-1"></i>
+              Loan Application
+            </a>
+            <a class="nav-item nav-link" routerLink="/reports" routerLinkActive="active">
+              <i class="fa fa-user-circle-o fa-lg pr-1"></i>
+              Reports
+            </a>
+          </div>
+        </div>
+      </nav>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

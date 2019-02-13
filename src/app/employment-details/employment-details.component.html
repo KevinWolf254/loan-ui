@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-body">
+
+    <form [formGroup]="form" (ngSubmit)="update(form.value)">
+
+      <div class="d-flex justify-content-between">
+        <h5 class="card-title">Employment Details</h5>
+        
+        <div class="btn-group btn-group-sm m-0" role="group">
+          <button *ngIf="!isEditable" class="btn btn-outline-info" (click)="makeEditable()" type="button"
+            [disabled]='!canEdit'>Edit</button>
+          <button *ngIf="isEditable" class="btn btn-outline-warning" type="submit"
+            [disabled]='!isFormValid'>Update</button>
+          <button class="btn btn-outline-danger" (click)="delete()" type="button" [disabled]='!canEdit'>Delete</button>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="staffNo">Staff No.</label>
+          <input type="text" class="form-control" id="staffNo" formControlName="staffNo"
+            [class.is-invalid]="isStaffNoInvalid" placeholder="Enter staff No." [ngDisable]="!isEditable">
+          <!-- error -->
+          <small class="form-text text-danger my-0" *ngIf="isStaffNoInvalid">
+            Please enter staff no.
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="designation">Designation</label>
+          <input type="text" class="form-control" id="designation" formControlName="designation"
+            [class.is-invalid]="isDesignationInvalid" placeholder="Enter designation" [ngDisable]="!isEditable">
+         <!-- error -->
+         <small class="form-text text-danger my-0" *ngIf="isDesignationInvalid">
+            Please enter designation
+          </small>
+        </div>
+      </div>
+
+      <fieldset [disabled]="!isEditable">
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="permanent" formControlName="terms" value="PERMANENT">
+            <label class="form-check-label" for="permanent">
+              Permanent
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="casual" formControlName="terms" value="CASUAL">
+            <label class="form-check-label" for="casual">
+              Casual
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="contract" formControlName="terms" value="CONTRACT">
+            <label class="form-check-label" for="contract">
+              Contract
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="other" formControlName="terms" value="OTHER">
+            <label class="form-check-label" for="other">
+              Other
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-group">
+        <label for="other">Other Information</label>
+        <textarea class="form-control" formControlName="other" id="other" rows="3" placeholder="Other Information"
+        [ngDisable]="!isEditable"></textarea>
+      </div>
+
+    </form>
+
+  </div>
+</div>

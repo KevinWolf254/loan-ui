@@ -1,0 +1,238 @@
+<div class="row mt-2">
+  <div class="col-sm-12">
+    <app-employment-details></app-employment-details>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="update(form.value)">
+
+  <div class="card mt-2">
+    <div class="card-body">
+
+      <div class="d-flex justify-content-between">
+        <h5 class="card-title">Employer Details</h5>
+        <div class="float-right btn-group btn-group-sm m-0" role="group">
+          <button *ngIf="!isEditable" class="btn btn-outline-info" (click)="makeEditable()" type="button"
+            [disabled]='!canEdit'>Edit</button>
+          <button *ngIf="isEditable" class="btn btn-outline-warning" type="submit"
+            [disabled]='!isFormValid'>Update</button>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-sm-5">
+          <label for="name">Institution Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter institution name" formControlName="name"
+            [ngDisable]="!isEditable" [class.is-invalid]="isNameInvalid">
+          <!-- error -->
+          <small class="form-text text-danger my-0" *ngIf="isNameInvalid">
+            Please enter name
+          </small>
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="industry">Industry</label>
+          <input type="text" class="form-control" id="industry" placeholder="Enter industry" formControlName="industry"
+            [ngDisable]="!isEditable" [class.is-invalid]="isIndustryInvalid">
+          <!-- error -->
+          <small class="form-text text-danger my-0" *ngIf="isIndustryInvalid">
+            Please enter industry
+          </small>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="operation">Years in Operation</label>
+          <input type="number" class="form-control" id="operation" placeholder="Enter years in operation"
+            formControlName="operation" [ngDisable]="!isEditable" [class.is-invalid]="isOperationInvalid">
+          <!-- error -->
+          <small class="form-text text-danger my-0" *ngIf="isOperationInvalid">
+            Please enter years operational
+          </small>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Contacts</h5>
+
+          <div formGroupName="contacts">
+            <div class="form-row">
+
+              <div class="form-group col-sm-6">
+                <label for="officeNo">Office No.</label>
+                <input type="text" class="form-control" id="officeNo" placeholder="Office No."
+                  formControlName="officeNo" [ngDisable]="!isEditable" [class.is-invalid]="isOfficePhoneNoInvalid">
+                <!-- error -->
+                <small class="form-text text-danger my-0" *ngIf="isOfficePhoneNoInvalid">
+                  Please enter years operational
+                </small>
+              </div>
+
+              <div class="form-group col-sm-6">
+                <label for="postal">Postal Address</label>
+                <div class="input-group" id="postal">
+                  <input type="text" class="form-control" placeholder="Number" formControlName="number"
+                    [ngDisable]="!isEditable">
+                  <input type="text" class="form-control" placeholder="Code" formControlName="code"
+                    [ngDisable]="!isEditable">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card">
+              <div class="card-body">
+                <div formGroupName="residence">
+
+                  <div class="d-flex justify-content-between">
+                    <h6 class="card-title">Office</h6>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="owned" formControlName="owned"
+                        [ngDisable]="!isEditable">
+                      <label class="form-check-label" for="owned">Owned</label>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+
+                    <div class="form-group col-sm-6">
+                      <label for="duration">Duration</label>
+                      <input type="text" id="duration" class="form-control" placeholder="Duration (yrs)"
+                        formControlName="duration" [ngDisable]="!isEditable">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                      <label for="physical">Physical Address</label>
+                      <div class="input-group" id="physical">
+                        <input type="text" class="form-control" placeholder="Estate" formControlName="estate"
+                          [ngDisable]="!isEditable">
+                        <input type="text" class="form-control" placeholder="Street" formControlName="street"
+                          [ngDisable]="!isEditable">
+                        <input type="text" class="form-control" placeholder="Office No." formControlName="officeNo"
+                          [ngDisable]="!isEditable">
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- old -->
+  <!-- <div class="card border-0">
+    <div class="card-body">
+
+      <div class="float-right btn-group btn-group-sm m-0" role="group">
+        <button *ngIf="!isEditable" class="btn btn-outline-info" (click)="makeEditable()" type="button"
+          [disabled]='!canEdit'>Edit</button>
+        <button *ngIf="isEditable" class="btn btn-outline-warning" type="submit"
+          [disabled]='!isFormValid'>Update</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Employer Details</h5>
+
+          <div class="form-group">
+            <label for="name">Institution Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter institution name"
+              formControlName="name" [ngDisable]="!isEditable">
+          </div>
+          <div class="form-group">
+            <label for="industry">Industry</label>
+            <input type="text" class="form-control" id="industry" placeholder="Enter industry"
+              formControlName="industry" [ngDisable]="!isEditable">
+          </div>
+          <div class="form-group">
+            <label for="operation">Years in Operation</label>
+            <input type="number" class="form-control" id="operation" placeholder="Enter years in operation"
+              formControlName="operation" [ngDisable]="!isEditable">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Contacts</h5>
+
+          <div formGroupName="contacts">
+
+            <div class="form-group">
+              <label for="officeNo">Office No.</label>
+              <input type="text" class="form-control" id="officeNo" placeholder="Office No." formControlName="officeNo"
+                [ngDisable]="!isEditable">
+            </div>
+            <div class="form-group">
+              <label for="postal">Postal Address</label>
+              <div class="input-group" id="postal">
+                <input type="text" class="form-control" placeholder="Number" formControlName="number"
+                  [ngDisable]="!isEditable">
+                <input type="text" class="form-control" placeholder="Code" formControlName="code"
+                  [ngDisable]="!isEditable">
+              </div>
+            </div>
+            <div class="card m-0">
+              <div class="card-body">
+                <h6 class="card-title">Residence</h6>
+
+                <div formGroupName="residence">
+
+                  <div class="row">
+                    <div class="col">
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="owned" formControlName="owned"
+                          [ngDisable]="!isEditable">
+                        <label class="form-check-label" for="owned">Owned</label>
+                      </div>
+
+                    </div>
+
+                    <div class="col">
+                      <input type="number" class="form-control" placeholder="Ocuppancy Duration (yrs)"
+                        formControlName="duration" [ngDisable]="!isEditable">
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="physical">Physical Address</label>
+                    <div class="input-group" id="physical">
+                      <input type="text" class="form-control" placeholder="Estate" formControlName="estate"
+                        [ngDisable]="!isEditable">
+                      <input type="text" class="form-control" placeholder="Street" formControlName="street"
+                        [ngDisable]="!isEditable">
+                      <input type="text" class="form-control" placeholder="Office No." formControlName="officeNo"
+                        [ngDisable]="!isEditable">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div> -->
+
+</form>
+
+<app-institution-income></app-institution-income>

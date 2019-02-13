@@ -1,0 +1,106 @@
+<div class="row mt-2">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Income</h5>
+
+        <div class="row">
+          <div class="col-md-6">
+
+            <form [formGroup]="form" (ngSubmit)="add(form.value)">
+
+              <fieldset>
+                <div class="form-group">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-4 pt-0">Type</legend>
+                    <div class="col-sm-8">
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="business" formControlName="type"
+                          value="BUSINESS">
+                        <label class="form-check-label" for="business">
+                          Business
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="rental" formControlName="type" value="RENTAL">
+                        <label class="form-check-label" for="rental">
+                          Rental
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="other" formControlName="type" value="OTHER">
+                        <label class="form-check-label" for="other">
+                          Other
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- error -->
+                  <small class="form-text text-danger my-0" *ngIf="isTypeInvalid">
+                    Please select income type
+                  </small>
+                </div>
+              </fieldset>
+
+              <div class="form-group">
+                <label for="details">Income Details</label>
+                <textarea class="form-control" formControlName="details" id="details" rows="3"
+                  placeholder="Enter details"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="amount">Income amount</label>
+                <div class="input-group" id="amount">
+                  <select formControlName="currency" class="custom-select" [class.is-invalid]="isCurrencyInvalid">
+                    <option value=''>Choose Currency</option>
+                    <option value="KES">KES</option>
+                    <option value="UGX">UGX</option>
+                    <option value="RWF">RWF</option>
+                    <option value="TZS">TZS</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                  </select>
+                  <input type="text" placeholder="Amount" class="form-control" formControlName="amount"
+                    [class.is-invalid]="isAmountInvalid">
+                </div>
+                <!-- error -->
+                <small class="form-text text-danger my-0" *ngIf="isCurrencyInvalid">
+                  Please Choose currency
+                </small>
+                <!-- error -->
+                <small class="form-text text-danger my-0" *ngIf="isAmountInvalid">
+                  Please enter amount
+                </small>
+              </div>
+
+              <button class="btn btn-primary mt-2 px-2" type="submit" [disabled]='!isFormValid'>Add</button>
+
+            </form>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Type</th>
+                  <th scope="col">Income Details</th>
+                  <th scope="col">Currency</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let income of incomes">
+                  <th scope="row">{{income.type}}</th>
+                  <td>{{income.details}}</td>
+                  <td>{{income.incomeAmount.currency}}</td>
+                  <td>{{income.incomeAmount.amount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

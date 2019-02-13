@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between">
+  <div class="page">
+    <h5>Loan Registration</h5>
+  </div>
+  <div>
+    <form [formGroup]="form" (ngSubmit)="search(form.value)">
+      <div class="form-group">
+        <div class="input-group input-group-sm">
+          <input type="number" class="form-control" placeholder="Member no" id="search" formControlName="memberNo"
+            [class.is-invalid]="isInvalid">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" id="searchButton"
+              [disabled]="isFormInvalid"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+        <!-- error -->
+        <small class="form-text text-danger my-0" *ngIf="isInvalid">
+          Please provide a valid Identity No.
+        </small>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<tabset [justified]="true">
+  <tab heading="Member Information">
+    <app-member></app-member>
+  </tab>
+  <tab heading="Employment Details">
+    <app-institution></app-institution>
+  </tab>
+  <tab heading="Loan Information">
+    <app-loan-information></app-loan-information>
+  </tab>
+</tabset>

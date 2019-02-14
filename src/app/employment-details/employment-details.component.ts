@@ -40,6 +40,9 @@ export class EmploymentDetailsComponent implements OnInit {
   update(form: any) {
 
   }
+  delete(){
+    
+  }
   makeEditable() {
     this.isEditable = true;
   }

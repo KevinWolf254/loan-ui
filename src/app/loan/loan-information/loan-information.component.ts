@@ -73,7 +73,10 @@ export class LoanInformationComponent implements OnInit {
     this.form.get('branch').get('account').get('accountName').setValue(account.name);
 
   }
-  addLoan(add: any){
+  addLoan(form: any){
+
+  }
+  addOtherLoan(form: any){
 
   }
   public get isFormValid() {

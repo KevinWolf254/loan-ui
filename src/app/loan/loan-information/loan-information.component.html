@@ -139,7 +139,7 @@
   </div>
   <div class="col-sm-6">
 
-    <div class="row">
+    <form [formGroup]="formOtherLoan" (ngSubmit)="addOtherLoan(form.value)">
       <div class="col-sm-12">
         <div class="card">
           <div class="card-body">

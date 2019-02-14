@@ -18,6 +18,7 @@ export class LoanInformationComponent implements OnInit {
   public formAccount: FormGroup;
 
   public formLoan: FormGroup;
+  public formOtherLoan: FormGroup;
 
   public loanApps: LoanResponse[] = [];
   
@@ -38,6 +39,14 @@ export class LoanInformationComponent implements OnInit {
     });
     //loan application form
     this.formLoan = _fb.group({
+      'type': ['', Validators.required],
+      'currency': ['', Validators.required],
+      'amount': ['', Validators.required],     
+      'purpose': ['', Validators.required],     
+      'status': ['PENDING', Validators.required],     
+    });
+    //other loans form
+    this.formOtherLoan = _fb.group({
       'type': ['', Validators.required],
       'currency': ['', Validators.required],
       'amount': ['', Validators.required],     
